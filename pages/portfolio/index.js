@@ -1,7 +1,7 @@
 import React from 'react'
 import Navigation from '../../components/Navigation'
 
-const Updates = () => {
+const Portfolio = () => {
   return (
     <>
         <Navigation />
@@ -10,4 +10,4 @@ const Updates = () => {
   )
 }
 
-export default Updates
+export default Portfolio

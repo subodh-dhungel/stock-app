@@ -14,8 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
 
-const pages = ['Home', 'News', 'Company', 'Updates'];
-
+const pages = ['Home', 'News', 'Company', 'Portfolio'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Navigation() {
@@ -43,26 +42,27 @@ function Navigation() {
     };
 
     return (
-        <AppBar position="static">
+        <AppBar style={{position: 'sticky'}}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
-                        variant="h6"
+                        variant="h5"
                         noWrap
                         component="a"
                         href="/"
                         sx={{
                             mr: 2,
                             display: { xs: 'none', md: 'flex' },
+                            position: 'sticky',
                             fontFamily: 'monospace',
-                            fontWeight: 700,
+                            fontWeight: 900,
                             letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        stock app
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -96,11 +96,11 @@ function Navigation() {
                         >
                             {pages.map((page) => {
                                 {
-                                    pages.map((page) => (
-                                        <MenuItem key={page} onClick={handleCloseNavMenu}>
+                                    return(
+                                        <MenuItem key={page} onClick={(e)=>handleCloseNavMenu(e,page)}>
                                             <Typography textAlign="center">{page}</Typography>
                                         </MenuItem>
-                                    ))
+                                    )
                                 }
                             })}
 
@@ -123,7 +123,7 @@ function Navigation() {
                             textDecoration: 'none',
                         }}
                     >
-                        LOGO
+                        stock app
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
@@ -140,7 +140,7 @@ function Navigation() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Subodh Dhungel" src="/static/images/avatar/2.jpg" />
                             </IconButton>
                         </Tooltip>
                         <Menu
