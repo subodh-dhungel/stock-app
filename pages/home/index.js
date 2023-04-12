@@ -1,6 +1,7 @@
 import CustomHeading from '@/components/CustomHeading'
 import Navigation from '@/components/Navigation'
 import NewsCard from '@/components/NewsCard'
+import BullionPrice from '@/components/home/BullionPrice'
 import { useTheme } from '@emotion/react'
 import { Container, Grid, Paper, Typography } from '@mui/material'
 
@@ -82,6 +83,9 @@ const Homepage = (props) => {
             </Grid>
           </Grid>
           </Paper>
+          
+          <BullionPrice />
+
         </Container>
 
 
