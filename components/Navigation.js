@@ -42,7 +42,12 @@ function Navigation() {
     };
 
     return (
-        <AppBar style={{position: 'sticky'}}>
+        <AppBar 
+            position='fixed'
+            sx={{
+                opacity: 0.9
+            }}
+        >
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />

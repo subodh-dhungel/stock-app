@@ -3,8 +3,8 @@ import React from 'react'
 
 const CustomHeading = (props) => {
     const font = 'cursive'
-    const headingSize = 50
-    const spacing = -5
+    const headingSize = 40
+    const spacing = 0
 
     return (
         <Typography

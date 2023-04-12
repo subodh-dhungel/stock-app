@@ -1,28 +1,37 @@
 import CustomHeading from '@/components/CustomHeading'
-import Introduction from '@/components/Introduction'
 import Navigation from '@/components/Navigation'
 import NewsCard from '@/components/NewsCard'
-import { Container, Grid, Typography } from '@mui/material'
+import { useTheme } from '@emotion/react'
+import { Container, Grid, Paper, Typography } from '@mui/material'
 
 const Homepage = (props) => {
   const xs = 12
+  const sm = 6
   const md = 6
   const lg = 4
   const xl = 4
+  const theme = useTheme()
 
   return (
     <>
       {/*Root Grid*/}
       <Grid container>
 
-        <Grid item xs={12} md={12} lg={12} xl={12}>
+        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
           <Navigation />
         </Grid>
 
 
         <Container
           sx={{
-            padding:10
+            [theme.breakpoints.down('md')]: {
+              padding: 5,
+              marginTop: 10
+            },
+            [theme.breakpoints.up('lg')]: {
+              padding: 5,
+              marginTop: 10
+            },
           }}
         >
           {/* Introduction
@@ -33,6 +42,13 @@ const Homepage = (props) => {
           </Grid> */}
 
           {/*Featured News Cards*/}
+          <Paper 
+            variant='elevation'
+            elevation={8}
+            sx={{
+              padding: 5
+            }}
+          >
           <Grid
             container
             spacing={3}
@@ -41,30 +57,31 @@ const Homepage = (props) => {
               <CustomHeading title='Exclusive News'/>
             </Grid>
 
-            <Grid item xs={xs} md={md} lg={lg} xl={xl}>
+            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
               <NewsCard />
             </Grid>
 
-            <Grid item xs={xs} md={md} lg={lg} xl={xl}>
+            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
               <NewsCard />
             </Grid>
 
-            <Grid item xs={xs} md={md} lg={lg} xl={xl}>
+            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
               <NewsCard />
             </Grid>
 
-            <Grid item xs={xs} md={md} lg={lg} xl={xl}>
+            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
               <NewsCard />
             </Grid>
 
-            <Grid item xs={xs} md={md} lg={lg} xl={xl}>
+            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
               <NewsCard />
             </Grid>
 
-            <Grid item xs={xs} md={md} lg={lg} xl={xl}>
+            <Grid item xs={xs} sm={sm} md={md} lg={lg} xl={xl}>
               <NewsCard />
             </Grid>
           </Grid>
+          </Paper>
         </Container>
 
 
