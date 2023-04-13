@@ -13,6 +13,7 @@ const CustomHeading = (props) => {
                 fontFamily: font,
                 fontSize: headingSize,
                 letterSpacing: spacing,
+                marginBottom: 2
             }}
         >
             {props.title}

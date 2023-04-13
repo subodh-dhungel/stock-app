@@ -35,12 +35,14 @@ function createData(name, buy, sell) {
 const rows = [
   createData('USD', 130, 131),
   createData('GBP', 152, 153),
-  createData('Eur', 142.5, 143.7),
+  createData('EUR', 142.5, 143.7),
+  createData('JPY', 0.90, 0.92),
+  createData('CNY', 16 , 16.51)
 ];
 
 export default function ForexPriceTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{maxHeight: 200}}>
       <Table sx={{ minWidth: 200 }} aria-label="customized table">
         <TableHead>
           <TableRow>

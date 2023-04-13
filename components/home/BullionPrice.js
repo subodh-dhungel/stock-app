@@ -32,7 +32,7 @@ const BullionPrice = () => {
             padding: 5
           }}
         >
-          <CustomHeading title="Bullion Price"/>
+          <CustomHeading title="Gold Price"/>
           <GoldPriceTable />
           
         </Paper>
@@ -50,7 +50,7 @@ const BullionPrice = () => {
             padding: 5
           }}
         >
-          <CustomHeading title="Forex"/>
+          <CustomHeading title="Foreign Exchange Rates"/>
           <ForexPriceTable />
         </Paper>
       </Grid>

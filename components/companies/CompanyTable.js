@@ -27,7 +27,7 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id:  'listedShares',
+    id: 'listedShares',
     label: 'listed Shares',
     minWidth: 170,
     align: 'right',
@@ -42,7 +42,7 @@ const columns = [
   }
 ];
 
-function createData(Company, symbol, paidUpCapital, listedShares , ltp) {
+function createData(Company, symbol, paidUpCapital, listedShares, ltp) {
   const density = paidUpCapital / listedShares;
   return { Company, symbol, paidUpCapital, listedShares, density, ltp };
 }
@@ -79,7 +79,10 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper elevation={8} sx={{
+      overflow: 'hidden',
+      padding: 2
+    }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

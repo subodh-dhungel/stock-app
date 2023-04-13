@@ -18,7 +18,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
 }));
 
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
+const StyledTableRow = styled(TableRow)(({ theme, name }) => ({
   '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
@@ -26,6 +26,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:last-child td, &:last-child th': {
     border: 0,
   },
+  backgroundColor: name === 'Tejabi Gold' ? 'goldenrod' : name === 'Fine Gold' ? 'gold' : 'silver',
 }));
 
 function createData(name, dailyChange, price) {
@@ -40,7 +41,7 @@ const rows = [
 
 export default function GoldPriceTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer component={Paper} sx={{maxHeight: 200}}>
       <Table sx={{ minWidth: 200 }} aria-label="customized table">
         <TableHead>
           <TableRow>
@@ -51,7 +52,7 @@ export default function GoldPriceTable() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <StyledTableRow key={row.name}>
+            <StyledTableRow key={row.name} name={row.name}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
               </StyledTableCell>
