@@ -11,6 +11,10 @@ const SpinnerLoader = () => {
 
   return (
     <Grid container>
+      <Grid item>
+        <Navigation />
+      </Grid>
+
       <Grid 
         item
         xs = {xs}

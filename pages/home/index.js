@@ -1,5 +1,4 @@
 import Navigation from '@/components/Navigation'
-import SpinnerLoader from '@/pages/SpinnerLoader'
 import BullionPrice from '@/components/home/BullionPrice'
 import FeaturedNews from '@/components/home/FeaturedNews'
 import Inflation from '@/components/home/Inflation'

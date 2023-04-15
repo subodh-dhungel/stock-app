@@ -37,8 +37,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider theme={theme}>
-        {loading && <SpinnerLoader />}
-        <Component {...pageProps} />
+        {loading ? <SpinnerLoader /> : <Component {...pageProps} />}
       </ThemeProvider>
     </>
   )
