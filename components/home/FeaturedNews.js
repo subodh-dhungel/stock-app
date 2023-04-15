@@ -15,7 +15,7 @@ const FeaturedNews = () => {
             variant='elevation'
             elevation={8}
             sx={{
-                padding: 5
+                padding: 10
             }}
         >
             <Grid
