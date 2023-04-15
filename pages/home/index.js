@@ -26,7 +26,7 @@ const Homepage = () => {
             },
             [theme.breakpoints.up('lg')]: {
               padding: 0,
-              marginTop: 10
+              marginTop: 15
             },
           }}
         >
