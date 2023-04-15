@@ -1,6 +1,7 @@
 import Navigation from '@/components/Navigation'
 import BullionPrice from '@/components/home/BullionPrice'
 import FeaturedNews from '@/components/home/FeaturedNews'
+import Gdp from '@/components/home/Gdp'
 import Inflation from '@/components/home/Inflation'
 import { useTheme } from '@emotion/react'
 import { Container, Grid } from '@mui/material'
@@ -34,6 +35,7 @@ const Homepage = () => {
           <FeaturedNews />
           <BullionPrice />
           <Inflation />
+          <Gdp />
         </Container>
 
 

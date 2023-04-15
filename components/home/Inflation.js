@@ -5,51 +5,51 @@ import { ResponsiveContainer, AreaChart, XAxis, YAxis, CartesianGrid, Tooltip, R
 
 const data = [
   {
-    "Date": "Shrawan",
+    "month": "Shrawan",
     "Inflation": 0.0826,
   },
   {
-    "Date": "Bhadra",
+    "month": "Bhadra",
     "Inflation": 0.0864,
   },
   {
-    "Date": "Ashwin",
+    "month": "Ashwin",
     "Inflation": 0.085,
   },
   {
-    "Date": "Kartik",
+    "month": "Kartik",
     "Inflation": 0.0808,
   },
   {
-    "Date": "Mangsir",
+    "month": "Mangsir",
     "Inflation": 0.0738,
   },
   {
-    "Date": "Poush",
+    "month": "Poush",
     "Inflation": 0.0726,
   },
   {
-    "Date": "Magh",
+    "month": "Magh",
     "Inflation": 0.0788,
   },
   {
-    "Date": "Falgun",
+    "month": "Falgun",
     "Inflation": 0.0744,
   },
   {
-    "Date": "Chaitra",
+    "month": "Chaitra",
     "Inflation": 0.065,
   },
   {
-    "Date": "Baisakh",
+    "month": "Baisakh",
     "Inflation": 0.0659,
   },
   {
-    "Date": "Jestha",
+    "month": "Jestha",
     "Inflation": 0.062,
   },
   {
-    "Date": "Ashar",
+    "month": "Ashar",
     "Inflation": 0.06,
   },
 ]
@@ -71,7 +71,7 @@ const Inflation = () => {
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={data}
             margin={{ top: 20, right: 30, left: 0, bottom: 0 }}>
-            <XAxis dataKey="Date" />
+            <XAxis dataKey="month" />
             <YAxis tickFormatter={formatPercent}/>
             <CartesianGrid strokeDasharray="3 3" />
             <Tooltip formatter={formatPercent}/>
