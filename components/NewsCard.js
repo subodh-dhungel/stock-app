@@ -4,6 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import pressButton from '@/firebase/Collections';
 
 export default function NewsCard() {
   return (
@@ -24,7 +25,7 @@ export default function NewsCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Share</Button>
+        <Button onClick={()=>pressButton()} size="small">Share</Button>
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
