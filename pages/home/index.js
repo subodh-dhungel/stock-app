@@ -4,10 +4,23 @@ import FeaturedNews from '@/components/home/FeaturedNews'
 import Gdp from '@/components/home/Gdp'
 import Inflation from '@/components/home/Inflation'
 import { useTheme } from '@emotion/react'
-import { Container, Grid } from '@mui/material'
+import { Button, Container, Grid, TextField } from '@mui/material'
+import addData from '@/firebase/Firestore'
 
 const Homepage = () => {
   const theme = useTheme()
+  const handleClick = async () => {
+    const data = {
+      name: 'Nabil Bank',
+      address: 'kamaladi, Kathmandu'
+    }
+    
+    const { result, error } = await addData('companies', 'company-id', data)
+
+    if (error) {
+      return console.log(error)
+    }
+  }
 
   return (
     <>
@@ -35,6 +48,9 @@ const Homepage = () => {
           <FeaturedNews />
           <BullionPrice />
           <Inflation />
+          <TextField placeholder='your data here'/>
+          <Button onClick={()=>handleClick()}>change data</Button>
+          
           <Gdp />
         </Container>
 
