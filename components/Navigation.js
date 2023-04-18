@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
 
 const pages = ['Home', 'News', 'Company', 'Portfolio'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
 
 function Navigation() {
     const router = useRouter()
@@ -32,12 +32,14 @@ function Navigation() {
 
     const handleCloseNavMenu = (e, page) => {
         e.preventDefault()
-        console.log(page)
         router.push(`/${page.toLowerCase()}`)
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = (e,settings) => {
+        console.log('handleCloseUserMenu working!!!')
+        e.preventDefault()
+        router.push(`/${settings.toLowerCase()}`)
         setAnchorElUser(null);
     };
 
@@ -164,9 +166,9 @@ function Navigation() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
+                            {settings.map((settings) => (
+                                <MenuItem key={settings} onClick={(e)=> handleCloseUserMenu(e, settings)}>
+                                    <Typography textAlign="center">{settings}</Typography>
                                 </MenuItem>
                             ))}
                         </Menu>

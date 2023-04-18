@@ -1,11 +1,11 @@
+
+import Login from '@/components/Login'
 import React from 'react'
 
-const Login = () => {
+const LoginPage = () => {
   return (
-    <div>
-        hello world
-    </div>
+    <Login />
   )
 }
 
-export default Login
+export default LoginPage

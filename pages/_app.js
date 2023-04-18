@@ -1,7 +1,7 @@
 import '@/styles/globals.css'
 import { ThemeProvider } from '@emotion/react'
 import { createTheme } from '@mui/material'
-import { red } from '@mui/material/colors'
+import { purple, red } from '@mui/material/colors'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import SpinnerLoader from './SpinnerLoader'
@@ -10,7 +10,7 @@ import SpinnerLoader from './SpinnerLoader'
 const theme = createTheme({
   palette: {
     primary: {
-      main: red[500]
+      main: red[800]
     }
   },
 })
