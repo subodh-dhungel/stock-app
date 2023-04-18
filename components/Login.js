@@ -13,15 +13,13 @@ export default function Login() {
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    setEmail(data.get("email"))
-    setPassword(data.get("password"))
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // const data = new FormData(event.currentTarget);
+
     console.log({
-      email: data.get("email"),
-      password: data.get("password"),
+      email: email,
+      password: password,
     });
   };
 
@@ -52,6 +50,7 @@ export default function Login() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={(e)=>setEmail(e.target.value)}
           />
           <TextField
             margin="normal"
@@ -62,6 +61,7 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={(e)=>setPassword(e.target.value)}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

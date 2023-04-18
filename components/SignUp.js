@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
@@ -9,15 +10,28 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { auth } from "@/firebase/Config";
+import { useRouter } from "next/router";
+
 
 export default function SignUp() {
+    let router = useRouter()
+    let [fName, setFname] = useState('')
+    let [email, setEmail] = useState('')
+    let [password, setPassword] = useState('')
+    let [confirmPassword, setConfirmPassword] = useState('')
+    let [dob, setDob] = useState('')
+    
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // const data = new FormData(event.currentTarget);
+
         console.log({
-            email: data.get("email"),
-            password: data.get("password"),
+            firstName: fName,
+            email: email,
+            password: password,
+            confirmPassword: confirmPassword,
+            dateOfBirth: dob
         });
     };
 
@@ -33,6 +47,7 @@ export default function SignUp() {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
+                    marginBottom: 15
                 }}
             >
                 <Typography component="h1" variant="h4">
@@ -40,7 +55,7 @@ export default function SignUp() {
                 </Typography>
                 <Box component="form" onSubmit={handleSubmit} sx={{ mt: 5 }}>
 
-                    <TextField 
+                    <TextField
                         margin="normal"
                         required
                         fullWidth
@@ -49,6 +64,7 @@ export default function SignUp() {
                         name="full-name"
                         autoComplete="name"
                         autoFocus
+                        onChange={(e)=>setFname(e.target.value)}
                     />
 
                     <TextField
@@ -60,6 +76,7 @@ export default function SignUp() {
                         name="email"
                         autoComplete="email"
                         autoFocus
+                        onChange={(e)=>setEmail(e.target.value)}
                     />
 
                     <TextField
@@ -71,6 +88,7 @@ export default function SignUp() {
                         type="password"
                         id="password"
                         autoComplete="current-password"
+                        onChange={(e)=>setPassword(e.target.value)}
                     />
 
                     <TextField
@@ -82,11 +100,13 @@ export default function SignUp() {
                         type="password"
                         id="confirm-password"
                         autoComplete="current-password"
+                        onChange={(e)=>setConfirmPassword(e.target.value)}
                     />
 
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker
                             label="Date of birth"
+                            on={(e)=>setDob(e.target.value)}
                             slotProps={{
                                 textField: {
                                     helperText: 'DD/MM/YYYY',
