@@ -7,13 +7,18 @@ import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { auth } from "@/firebase/Config";
+import { useState } from "react";
 
 export default function Login() {
+  let [email, setEmail] = useState('')
+  let [password, setPassword] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    setEmail(data.get("email"))
+    setPassword(data.get("password"))
+    
     console.log({
       email: data.get("email"),
       password: data.get("password"),
@@ -77,7 +82,7 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/signup" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>

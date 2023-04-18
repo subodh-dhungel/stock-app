@@ -15,7 +15,7 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
 
 const pages = ['Home', 'News', 'Company', 'Portfolio'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Login'];
+const settings = ['Profile', 'Account', 'Dashboard', 'Login' , 'Signup'];
 
 function Navigation() {
     const router = useRouter()
