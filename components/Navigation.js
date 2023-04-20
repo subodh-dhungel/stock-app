@@ -96,7 +96,6 @@ function Navigation() {
                                 horizontal: 'left',
                             }}
                             open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
                             sx={{
                                 display: { xs: 'block', md: 'none' },
                             }}
@@ -147,7 +146,7 @@ function Navigation() {
                     <Box sx={{ flexGrow: 0 }}>
                         <Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt="Subodh Dhungel" src="/static/images/avatar/2.jpg" />
+                                <Avatar alt="Stock app" />
                             </IconButton>
                         </Tooltip>
                         <Menu

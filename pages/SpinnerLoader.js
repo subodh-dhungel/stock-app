@@ -1,6 +1,5 @@
 import { CircularProgress, Container, Grid } from '@mui/material'
 import React from 'react'
-import Navigation from '../components/Navigation'
 
 const SpinnerLoader = () => {
   const xs = 12
@@ -11,10 +10,7 @@ const SpinnerLoader = () => {
 
   return (
     <Grid container>
-      <Grid item>
-        <Navigation />
-      </Grid>
-
+      
       <Grid 
         item
         xs = {xs}

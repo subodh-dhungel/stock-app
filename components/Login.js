@@ -8,19 +8,24 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { signIn } from "@/firebase/Authentication";
+import GoogleButton from "./GoogleButton";
 
 export default function Login() {
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
+  let router = useRouter()
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // const data = new FormData(event.currentTarget);
-
-    console.log({
-      email: email,
-      password: password,
-    });
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try{
+      const {result, error} = await signIn(email,password)
+      router.push('/home')
+      console.log('welcome user')
+    }catch(e){
+      console.log(error)
+    }
   };
 
   return (
@@ -31,7 +36,8 @@ export default function Login() {
           borderRadius: 2,
           px: 4,
           py: 6,
-          marginTop: 15,
+          marginTop: 5,
+          marginBottom: 10,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -63,10 +69,12 @@ export default function Login() {
             autoComplete="current-password"
             onChange={(e)=>setPassword(e.target.value)}
           />
+          
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           />
+
           <Button
             type="submit"
             fullWidth
@@ -82,11 +90,13 @@ export default function Login() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="/signup" variant="body2">
+              <Link onClick={()=> router.push(`/signup`)} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Grid>
+            </Grid>      
           </Grid>
+
+          
         </Box>
       </Box>
     </Container>

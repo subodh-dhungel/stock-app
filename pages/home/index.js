@@ -8,14 +8,16 @@ import { Button, Container, Grid, TextField } from '@mui/material'
 import addData from '@/firebase/Firestore'
 
 const Homepage = () => {
+  console.log('button click')
   const theme = useTheme()
+  
   const handleClick = async () => {
     const data = {
       name: 'Nabil Bank',
       address: 'kamaladi, Kathmandu'
     }
     
-    const { result, error } = await addData('companies', 'company-id', data)
+    const { result, error } = await addData('compani', 'company-id', data)
 
     if (error) {
       return console.log(error)
@@ -48,10 +50,8 @@ const Homepage = () => {
           <FeaturedNews />
           <BullionPrice />
           <Inflation />
-          <TextField placeholder='your data here'/>
-          <Button onClick={()=>handleClick()}>change data</Button>
-          
           <Gdp />
+          <Button onClick={()=>handleClick()}>click</Button>
         </Container>
 
 

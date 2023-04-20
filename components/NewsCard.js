@@ -16,12 +16,13 @@ export default function NewsCard() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard
+          Lorem Ipsum
         </Typography>
+
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis semper purus quis orci viverra
         </Typography>
+        
       </CardContent>
       <CardActions>
         <Button size="small">Share</Button>

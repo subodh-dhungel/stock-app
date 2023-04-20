@@ -3,26 +3,35 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth } f
 
 const auth = getAuth(firebaseApp)
 
-export const signUp = async() => {
-    let error = null
-    let result = null
-
+export const signUp = async(email,password) => {
     try{
-        result = await createUserWithEmailAndPassword(auth, email, password)
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+        const user = userCredential.user
+        return {
+            result: user
+        }
     }catch(e){
-        error = e
+        errorMessage = e.message
+        errorCode = e.code
+        return{
+            error: errorMessage
+        }
     }
-
-    return {result, error}
 }
 
-export const signIn = async() => {
-    let result = null
-    let error = null
-
+export const signIn = async(email,password) => {
     try{
-        result = await signInWithEmailAndPassword(auth, email, password)
+        const userCredential = await signInWithEmailAndPassword(auth, email, password)
+        const user = userCredential.user
+        return{
+            result: user
+        }
+
     }catch(e){
-        error = e
+        const errorCode = e.code
+        const errorMessage = e.message
+        return {
+            error: errorMessage
+        }
     }
 }
