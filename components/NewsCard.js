@@ -5,7 +5,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function NewsCard() {
+export default function NewsCard(props) {
+  console.log(props.data.data.results[0].title)
   return (
     <Card sx={{ maxWidth: 320 }}>
       <CardMedia
@@ -16,7 +17,7 @@ export default function NewsCard() {
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lorem Ipsum
+          {props.data.data.results[0].title}
         </Typography>
 
         <Typography variant="body2" color="text.secondary">
@@ -31,3 +32,5 @@ export default function NewsCard() {
     </Card>
   );
 }
+
+

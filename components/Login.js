@@ -9,13 +9,24 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { signIn } from "@/firebase/Authentication";
+import { signIn, signInGoogle } from "@/firebase/Authentication";
 import GoogleButton from "./GoogleButton";
 
 export default function Login() {
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
+  let [loggedIn, setLoggedIn] = useState(false)
   let router = useRouter()
+
+  const googleLogin = async(e) => {
+    e.preventDefault()
+    try{
+      await signInGoogle()
+      router.push(`/home`)
+    }catch(e){
+      console.log(error)
+    }
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -96,7 +107,7 @@ export default function Login() {
             </Grid>      
           </Grid>
 
-          
+          <GoogleButton text="Login with google" onClick={(e)=>googleLogin(e)}/>
         </Box>
       </Box>
     </Container>

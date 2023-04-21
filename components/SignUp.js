@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { useRouter } from "next/router";
-import { signUp } from "@/firebase/Authentication";
+import { signInGoogle, signUp } from "@/firebase/Authentication";
 import GoogleButton from "./GoogleButton";
 
 export default function SignUp() {
@@ -15,6 +15,16 @@ export default function SignUp() {
     let [email, setEmail] = useState('')
     let [password, setPassword] = useState('')
     let [confirmPassword, setConfirmPassword] = useState('')
+
+    const googleSignUp = async(e) =>{
+        e.preventDefault()
+        try{
+            await signInGoogle()
+            router.push('/home')
+        }catch(e){
+            console.log(e)
+        }
+    }
 
 
     const handleSubmit = async (e) => {
@@ -96,7 +106,7 @@ export default function SignUp() {
                         </Grid>
                     </Grid>
 
-                    <GoogleButton />
+                    <GoogleButton text="Sign up with google" onClick={(e)=> googleSignUp(e)}/>
                 </Box>
             </Box>
         </Container>

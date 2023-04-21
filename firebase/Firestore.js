@@ -1,5 +1,4 @@
 import firebaseApp from './Config'
-
 import {getFirestore, doc , setDoc} from 'firebase/firestore'
 
 const db = getFirestore(firebaseApp)
