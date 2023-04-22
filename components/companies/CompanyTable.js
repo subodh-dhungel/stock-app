@@ -8,66 +8,58 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 
-const columns = [
-  {
-    id: 'Company',
-    label: 'Company',
-    minWidth: 170
-  },
-  {
-    id: 'symbol',
-    label: 'symbol',
-    minWidth: 100
-  },
-  {
-    id: 'paidUpCapital',
-    label: 'paid up capital',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'listedShares',
-    label: 'listed Shares',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString('en-US'),
-  },
 
-  {
-    id: 'ltp',
-    label: 'LTP',
-    minWidth: 170,
-    align: 'right',
-  }
-];
+export default function CompanyTable(props) {
+  console.log(props)
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const tableData = props.data.companyData
 
-function createData(Company, symbol, paidUpCapital, listedShares, ltp) {
-  const density = paidUpCapital / listedShares;
-  return { Company, symbol, paidUpCapital, listedShares, density, ltp };
-}
+  const columns = [
+    {
+      id: 'stockname',
+      label: 'Name',
+      minWidth: 110
+    },
+    {
+      id: 'stocksymbol',
+      label: 'stock symbol',
+      minWidth: 100
+    },
+    {
+      id: 'percentdifference',
+      label: '%difference',
+      minWidth: 80,
+      align: 'right',
+    },
+    {
+      id: 'totalquantity',
+      label: 'total quantity',
+      minWidth: 100,
+      align: 'right',
+    },
+  
+    {
+      id: 'minprice',
+      label: 'min price',
+      minWidth: 100,
+      align: 'right',
+    },
 
-const rows = [
-  createData('Nabil Bank Limited', 'NABIL', 1324171354, 3287263, 590),
-  createData('Prime Commercial Bank Limited', 'PCBL', 1403500365, 9596961, 193),
-  createData('NIC Asia Bank Limited', 'NICA', 60483973, 301340, 620),
-  createData('Himalayan Bank Limited', 'HBL', 327167434, 9833520, 220),
-  createData('Kumari Bank Limited', 'KBL', 37602103, 9984670, 180),
-  createData('Standard Chartered Bank Nepal Limited', 'SCB', 25475400, 7692024, 310),
-  createData('Global IME Bank Limited', 'GBIME', 83019200, 357578, 225),
-  createData('Sanima Bank Limited', 'SANIMA', 4857000, 70273, 200),
-  createData('Agricaltural Development Bank Limited', 'ADBL', 126577691, 1972550, 183),
-  createData('Prabhu Bank Limited', 'PRVU', 126317000, 377973, 187),
-  createData('Nepal Investment Mega Bank Limited', 'NIMB', 67022000, 640679, 203),
-  createData('Laxmi Bank Limited', 'LBL', 67545757, 242495, 191),
-  createData('Siddartha Bank Limited', 'SBL', 146793744, 17098246, 219),
-  createData('Citizens Bank International Limited', 'CZBIL', 200962417, 923768, 170),
-  createData('Everest Bank Limited', 'EBL', 210147125, 8515767, 481),
-];
+    {
+      id: 'maxprice',
+      label: 'max price',
+      minWidth: 100,
+      align: 'right'
+    },
 
-export default function StickyHeadTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    {
+      id: 'closingprice',
+      label: 'close price',
+      minWidth: 100,
+      align: 'right'
+    }
+  ];
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -106,11 +98,11 @@ export default function StickyHeadTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {tableData
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.symbol}>
+                  <TableRow hover role="checkbox" tabIndex={-1} key={row.stocksymbol}>
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
@@ -130,7 +122,7 @@ export default function StickyHeadTable() {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={tableData.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
