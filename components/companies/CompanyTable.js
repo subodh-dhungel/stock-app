@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,11 +10,12 @@ import TableRow from '@mui/material/TableRow';
 
 
 export default function CompanyTable(props) {
-  console.log(props)
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const tableData = props.data.companyData
+  const [negative, setNegative] = useState('blue');
 
+  const tableData = props.data.companyData
+  console.log(tableData[0])
   const columns = [
     {
       id: 'stockname',
@@ -29,7 +30,7 @@ export default function CompanyTable(props) {
     {
       id: 'percentdifference',
       label: '%difference',
-      minWidth: 80,
+      minWidth: 60,
       align: 'right',
     },
     {
@@ -106,7 +107,14 @@ export default function CompanyTable(props) {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell 
+                          key={column.id} 
+                          align={column.align}
+                          sx={{
+                            backgroundColor: (row.percentdifference > 0) ? 'green' : (row.percentdifference < 0) ? 'red' : 'blue',
+                            color: 'white'
+                          }}
+                        >
                           {column.format && typeof value === 'number'
                             ? column.format(value)
                             : value}
