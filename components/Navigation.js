@@ -54,6 +54,10 @@ function Navigation() {
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
+
+
+
+
                         variant="h5"
                         noWrap
                         component="a"
@@ -64,12 +68,12 @@ function Navigation() {
                             position: 'sticky',
                             fontFamily: 'monospace',
                             fontWeight: 900,
-                            letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
+                            fontStyle: 'italic'
                         }}
                     >
-                        StockApp
+                        Online Stock
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -124,12 +128,12 @@ function Navigation() {
                             flexGrow: 1,
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
                             color: 'inherit',
                             textDecoration: 'none',
+                            fontStyle: 'italic'
                         }}
                     >
-                        StockApp
+                        Online Stock
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (

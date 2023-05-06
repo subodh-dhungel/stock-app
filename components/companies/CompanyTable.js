@@ -12,7 +12,6 @@ import TableRow from '@mui/material/TableRow';
 export default function CompanyTable(props) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [negative, setNegative] = useState('blue');
 
   const tableData = props.data.companyData
   console.log(tableData[0])
@@ -22,17 +21,20 @@ export default function CompanyTable(props) {
       label: 'Name',
       minWidth: 110
     },
+
     {
       id: 'stocksymbol',
       label: 'stock symbol',
       minWidth: 100
     },
+
     {
       id: 'percentdifference',
       label: '%difference',
       minWidth: 60,
       align: 'right',
     },
+    
     {
       id: 'totalquantity',
       label: 'total quantity',

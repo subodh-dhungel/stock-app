@@ -1,11 +1,11 @@
 import Navigation from '@/components/Navigation'
 import BullionPrice from '@/components/home/BullionPrice'
-import FeaturedNews from '@/components/home/FeaturedNews'
 import Gdp from '@/components/home/Gdp'
 import Inflation from '@/components/home/Inflation'
 import { useTheme } from '@emotion/react'
 import { Button, Container, Grid, TextField } from '@mui/material'
 import addData from '@/firebase/Firestore'
+import Indices from '@/components/home/Indices'
 
 const Homepage = (props) => {
   const theme = useTheme()
@@ -44,6 +44,7 @@ const Homepage = (props) => {
             },
           }}
         >
+          <Indices />
           <BullionPrice />
           <Inflation />
           <Gdp />
