@@ -1,4 +1,3 @@
-import '@/styles/globals.css'
 import { ThemeProvider } from '@emotion/react'
 import { createTheme } from '@mui/material'
 import { purple, red } from '@mui/material/colors'

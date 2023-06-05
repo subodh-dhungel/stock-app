@@ -36,11 +36,12 @@ function Navigation() {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = (e,settings) => {
-        console.log('handleCloseUserMenu working!!!')
-        e.preventDefault()
-        router.push(`/${settings.toLowerCase()}`)
+    const handleCloseUserMenu = (e, settings) => {
+        e.preventDefault();
         setAnchorElUser(null);
+        if (settings) {
+          router.push(`/${settings.toLowerCase()}`);
+        }
     };
 
     return (
@@ -54,10 +55,6 @@ function Navigation() {
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography
-
-
-
-
                         variant="h5"
                         noWrap
                         component="a"
@@ -153,6 +150,7 @@ function Navigation() {
                                 <Avatar alt="Stock app" />
                             </IconButton>
                         </Tooltip>
+
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
@@ -167,14 +165,15 @@ function Navigation() {
                                 horizontal: 'right',
                             }}
                             open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
+                            onClose={(e) => handleCloseUserMenu(e)}
+                        > 
                             {settings.map((settings) => (
-                                <MenuItem key={settings} onClick={(e)=> handleCloseUserMenu(e, settings)}>
-                                    <Typography textAlign="center">{settings}</Typography>
-                                </MenuItem>
+                            <MenuItem key={settings} onClick={(e) => handleCloseUserMenu(e, settings)}>
+                                <Typography textAlign="center">{settings}</Typography>
+                            </MenuItem>
                             ))}
                         </Menu>
+
                     </Box>
                 </Toolbar>
             </Container>

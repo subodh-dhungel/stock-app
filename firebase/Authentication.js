@@ -33,9 +33,17 @@ export const signIn = async(email,password) => {
     }catch(e){
         const errorCode = e.code
         const errorMessage = e.message
-        return {
-            error: errorMessage
+
+        if (errorCode === 'auth/user-not-found') {
+            console.error('Email not registered:', email);
+        }else if (errorCode === 'auth/wrong-password') {
+            console.error('Incorrect password for email:', email);
+        }else {
+            console.error('Error logging in:', errorMessage);
         }
+        // return {
+        //     error: errorMessage
+        // }
     }
 }
 
@@ -49,5 +57,16 @@ export const signInGoogle = async () => {
     }catch(e){
         console.log(e)
         return {e}
+    }
+}
+
+// check whether user is logged in or not...
+export const isLoggedIn = () => {
+    let user = auth.currentUser
+    let name = auth.currentUser
+    if(user){
+        return true,name.displayName
+    }else{
+        return false
     }
 }

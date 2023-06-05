@@ -35,7 +35,7 @@ export default function Login() {
       router.push('/home')
       console.log('welcome user')
     }catch(e){
-      console.log(error)
+      console.log(e)
     }
   };
 

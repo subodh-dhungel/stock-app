@@ -6,8 +6,13 @@ import { useTheme } from '@emotion/react'
 import { Button, Container, Grid, TextField } from '@mui/material'
 import addData from '@/firebase/Firestore'
 import Indices from '@/components/home/Indices'
+import { useEffect, useState } from 'react'
+import ResponsiveDialog from '@/components/Dialogue'
+import { isLoggedIn } from '@/firebase/Authentication'
 
 const Homepage = (props) => {
+  const a = isLoggedIn()
+  console.log(a)
   const theme = useTheme()
   const handleClick = async () => {
     const data = {
@@ -21,6 +26,19 @@ const Homepage = (props) => {
       return console.log(error)
     }
   }
+
+  const [openDialog, setOpenDialog] = useState(false);
+
+  //User lai app chalaisakepaxi login wa sign up garauna ko lagi
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpenDialog(true);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <>
@@ -50,9 +68,16 @@ const Homepage = (props) => {
           <Gdp />
           <Button onClick={()=>handleClick()}>click</Button>
         </Container>
-
-
       </Grid>
+
+      {
+        !isLoggedIn() ? openDialog && <ResponsiveDialog
+        dialogTitle="Login or sign up?"
+        errorText="You should have an account to continue to use this app further..."
+        option1="Login"
+        option2="SignUp"
+      /> : null
+      }
     </>
   )
 }
