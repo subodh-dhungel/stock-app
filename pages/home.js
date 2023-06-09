@@ -49,7 +49,6 @@ const Homepage = (props) => {
           <Navigation />
         </Grid>
 
-
         <Container
           sx={{
             [theme.breakpoints.down('md')]: {

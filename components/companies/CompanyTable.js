@@ -14,7 +14,7 @@ export default function CompanyTable(props) {
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
   const tableData = props.data.companyData
-  console.log(tableData[0])
+  console.log(tableData)
   const columns = [
     {
       id: 'stockname',
