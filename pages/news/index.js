@@ -20,13 +20,13 @@ const News = (props) => {
 }
 
 export async function getServerSideProps(context) {
-  let news =
-   await fetch('https://newsdata.io/api/1/news?apikey=pub_2080765951c79f92a7788fb78517e284638cf&country=np&category=business,politics,science,technology')
-  let newsData = await news.json()
+  
+    var news = await fetch('https://newsdata.io/api/1/news?apikey=pub_2080765951c79f92a7788fb78517e284638cf&country=np&category=business,politics,science,technology')
+    var newsData = await news.json()
 
-  return {
-    props: newsData
-  }
+    return {
+      props: newsData
+    }
 }
 
-export default News
+export default React.memo(News)

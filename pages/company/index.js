@@ -32,12 +32,15 @@ const Company = (props) => {
 }
 
 export async function getServerSideProps(context) {
-
-  const companies = await fetch('https://api.kitta.dev/live/', {
+  //https://api.kitta.dev/stocks/live (when kitta api is ready)
+  const companies = await fetch('https://www.nepalipaisa.com/api/GetStockLive', {
     method: 'GET',
     headers: {
       'accept': 'application/json',
-      'access_token': '415a2d18-6bdd-4f02-a7c0-f081e3e88b35@#EDLPNM47GU'
+      // OLD API KEY
+      // 'access_token': '415a2d18-6bdd-4f02-a7c0-f081e3e88b35@#EDLPNM47GU'
+      // NEW API KEY
+      // 'access_token': 'c773fc74-e134-4cb5-99b2-98e7dc01cb01'
     }
   })
 
