@@ -14,8 +14,37 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
 
-const pages = ['Home', 'News', 'Company', 'Portfolio'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Login' , 'Signup'];
+const pages = [
+    {
+        name: 'Home',
+        url: '/home'
+    },
+    {
+        name: 'Portfolio',
+        url:'/portfolio'
+    },
+    {
+        name: 'News',
+        url:'/news'
+    },
+    {
+        name: 'Live Market',
+        url:'/company'
+    }
+];
+
+const settings = [
+
+    {
+        name: 'Profile',
+        url: '/home'
+    },
+    
+    {
+        name: 'Logout',
+        url:'/login'
+    },
+];
 
 function Navigation() {
     const router = useRouter()
@@ -30,13 +59,13 @@ function Navigation() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = (e, page) => {
+    const handleCloseNavMenu = (e, page, index) => {
         e.preventDefault()
-        router.push(`/${page.toLowerCase()}`)
+        router.push(page.url)
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = (e, settings) => {
+    const handleCloseUserMenu = (e, settings, index) => {
         e.preventDefault();
         setAnchorElUser(null);
         if (settings) {
@@ -101,11 +130,11 @@ function Navigation() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => {
+                            {pages.map((page,index) => {
                                 {
                                     return(
-                                        <MenuItem key={page} onClick={(e)=>handleCloseNavMenu(e,page)}>
-                                            <Typography textAlign="center">{page}</Typography>
+                                        <MenuItem key={index} onClick={(e)=>handleCloseNavMenu(e,page,index)}>
+                                            <Typography textAlign="center">{page.name}</Typography>
                                         </MenuItem>
                                     )
                                 }
@@ -133,13 +162,13 @@ function Navigation() {
                         Online Stock
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {pages.map((page, index) => (
                             <Button
-                                key={page}
-                                onClick={(e) => handleCloseNavMenu(e, page)}
+                                key={index}
+                                onClick={(e) => handleCloseNavMenu(e, page, index)}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
-                                {page}
+                                {page.name}
                             </Button>
                         ))}
                     </Box>
@@ -167,9 +196,9 @@ function Navigation() {
                             open={Boolean(anchorElUser)}
                             onClose={(e) => handleCloseUserMenu(e)}
                         > 
-                            {settings.map((settings) => (
-                            <MenuItem key={settings} onClick={(e) => handleCloseUserMenu(e, settings)}>
-                                <Typography textAlign="center">{settings}</Typography>
+                            {settings.map((settings ,index) => (
+                            <MenuItem key={index} onClick={(e) => handleCloseNavMenu(e, settings, index)}>
+                                <Typography textAlign="center">{settings.name}</Typography>
                             </MenuItem>
                             ))}
                         </Menu>

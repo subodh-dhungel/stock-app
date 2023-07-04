@@ -1,11 +1,12 @@
 import firebaseApp from "./Config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup ,setPersistence, browserSessionPersistence} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider()
 
 const auth = getAuth(firebaseApp)
 
+//email and password signup
 export const signUp = async(email,password) => {
     try{
         const userCredential = await createUserWithEmailAndPassword(auth, email, password)
@@ -22,8 +23,11 @@ export const signUp = async(email,password) => {
     }
 }
 
+//email and password signin
+
 export const signIn = async(email,password) => {
     try{
+        await setPersistence(auth, browserSessionPersistence);
         const userCredential = await signInWithEmailAndPassword(auth, email, password)
         const user = userCredential.user
         return{
@@ -47,8 +51,11 @@ export const signIn = async(email,password) => {
     }
 }
 
+//sign in with google
+
 export const signInGoogle = async () => {
     try{
+        await setPersistence(auth, browserSessionPersistence)
         const result = await signInWithPopup(auth,provider)
         const credential = GoogleAuthProvider.credentialFromResult(result)
         const token = credential.accessToken
@@ -70,3 +77,6 @@ export const isLoggedIn = () => {
         return false
     }
 }
+
+// make user logged in after he visits again...
+// this is my code make the user logged in using firebase persistance

@@ -34,12 +34,15 @@ export default function ResponsiveDialog(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
+        
           <Button autoFocus onClick={()=>handleClose("/login")}>
             {props.option1}
           </Button>
+
           <Button onClick={()=>handleClose("/signup")} autoFocus>
             {props.option2}
           </Button>
+
         </DialogActions>
       </Dialog>
     </div>

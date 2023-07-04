@@ -83,62 +83,70 @@ const Homepage = (props) => {
   );
 };
 
-export async function getServerSideProps(context) {
+// export async function getServerSideProps(context) {
 
-  function getNepseHours(date) {
-    // Check if the date is a trading day and adjust if necessary
-    while (date.getDay() === 5 || date.getDay() === 6) {
-      date.setDate(date.getDate() - 1);
-    }
+//   function getNepseHours(date) {
+//     // Check if the date is a trading day and adjust if necessary
+//     while (date.getDay() === 5 || date.getDay() === 6) {
+//       if(date.getDay()=== 5){
+//         date.setDate(date.getDate() - 1);
+//       }else {
+//         date.setDate(date.getDate() - 2);
+//       }
+//     }
+
+//     // Set the opening and closing hours for the trading day
+//     const openingHour = 11;
+//     const openingMinute = 0;
+//     const closingHour = 15;
+//     const closingMinute = 0;
   
-    // Set the opening and closing hours for the trading day
-    const openingHour = 11;
-    const openingMinute = 0;
-    const closingHour = 15;
-    const closingMinute = 0;
+//     if(date.getHours() < openingHour){
+//       date.setDate(date.getDate()-1)
+//     }
+
+//     // Create new Date objects for the opening and closing times
+//     const openingTime = new Date(date);
+//     openingTime.setHours(openingHour, openingMinute, 0, 0);
+//     const closingTime = new Date(date);
+//     closingTime.setHours(closingHour, closingMinute, 0, 0);
   
-    // Create new Date objects for the opening and closing times
-    const openingTime = new Date(date);
-    openingTime.setHours(openingHour, openingMinute, 0, 0);
-    const closingTime = new Date(date);
-    closingTime.setHours(closingHour, closingMinute, 0, 0);
+//     // Convert the opening and closing times to Unix seconds
+//     const openingUnix = Math.floor(openingTime.getTime() / 1000);
+//     const closingUnix = Math.floor(closingTime.getTime() / 1000);
   
-    // Convert the opening and closing times to Unix seconds
-    const openingUnix = Math.floor(openingTime.getTime() / 1000);
-    const closingUnix = Math.floor(closingTime.getTime() / 1000);
-  
-    // Return the opening and closing times as an object
-    return { opening: openingUnix, closing: closingUnix };
-  }
+//     // Return the opening and closing times as an object
+//     return { opening: openingUnix, closing: closingUnix };
+//   }
   
 
-  try {
-    const currentDate = new Date();
-    const nepseHours = getNepseHours(currentDate);
+//   try {
+//     const currentDate = new Date();
+//     const nepseHours = getNepseHours(currentDate);
+    
+//     const res = await fetch(
+//       `https://nepsealpha.com/trading/1/history?symbol=NEPSE&resolution=1M&from=${getNepseHours.opening}&to=${getNepseHours.closing}&pass=ok&force=161552&currencyCode=NRS`,{
+//         method: "GET",
+//         headers: {
+//           accept: "application/json",
+//         },
+//       }
+//     );
 
-    const res = await fetch(
-      `https://nepsealpha.com/trading/1/history?symbol=NEPSE&resolution=1M&from=${nepseHours.opening}&to=${nepseHours.closing}&pass=ok&force=161552&currencyCode=NRS`,{
-        method: "GET",
-        headers: {
-          accept: "application/json",
-        },
-      }
-    );
-
-    const data = await res.json();
-    return {
-      props: {
-        data: data,
-      },
-    };
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    return {
-      props: {
-        data: "There maybe some network issues", // or handle the error case appropriately
-      },
-    };
-  }
-}
+//     const data = await res.json();
+//     return {
+//       props: {
+//         data: data,
+//       },
+//     };
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return {
+//       props: {
+//         data: "There maybe some network issues", // or handle the error case appropriately
+//       },
+//     };
+//   }
+// }
 
 export default Homepage;

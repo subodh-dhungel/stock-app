@@ -13,52 +13,65 @@ export default function CompanyTable(props) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const tableData = props.data.companyData
-  console.log(tableData)
+  const tableData = props.data.companyData.result.stocks
+  
   const columns = [
     {
-      id: 'stockname',
+      id: 'companyName',
       label: 'Name',
       minWidth: 110
     },
 
     {
-      id: 'stocksymbol',
+      id: 'stockSymbol',
       label: 'stock symbol',
       minWidth: 100
     },
 
     {
-      id: 'percentdifference',
+      id: 'percentChange',
       label: '%difference',
       minWidth: 60,
       align: 'right',
     },
+
+    {
+      id: 'volume',
+      label: 'volume',
+      minWidth: 60,
+      align: 'right'
+    },
     
     {
-      id: 'totalquantity',
-      label: 'total quantity',
+      id: 'noOfTransactions',
+      label: 'n of Transaction',
       minWidth: 100,
       align: 'right',
     },
+    {
+      id: 'openingPrice',
+      label: 'open',
+      minWidth: 100,
+      align: 'right'
+    },
   
     {
-      id: 'minprice',
+      id: 'minPrice',
       label: 'min price',
       minWidth: 100,
       align: 'right',
     },
 
     {
-      id: 'maxprice',
-      label: 'max price',
+      id: 'maxPrice',
+      label: 'max',
       minWidth: 100,
       align: 'right'
     },
 
     {
-      id: 'closingprice',
-      label: 'close price',
+      id: 'closingPrice',
+      label: 'close',
       minWidth: 100,
       align: 'right'
     }
@@ -79,12 +92,12 @@ export default function CompanyTable(props) {
       padding: 2
     }}>
       <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
+        <Table sx={{ width: "max-content" }} stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {columns.map((column, index) => (
                 <TableCell
-                  key={column.id}
+                  key={index}
                   align={column.align}
                   style={{ 
                     minWidth: column.minWidth,
@@ -103,17 +116,17 @@ export default function CompanyTable(props) {
           <TableBody>
             {tableData
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
+              .map((row, index) => {
                 return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.stocksymbol}>
-                    {columns.map((column) => {
+                  <TableRow hover role="checkbox" tabIndex={-1} key={index}>
+                    {columns.map((column, index) => {
                       const value = row[column.id];
                       return (
                         <TableCell 
-                          key={column.id} 
+                          key={index} 
                           align={column.align}
                           sx={{
-                            backgroundColor: (row.percentdifference > 0) ? 'green' : (row.percentdifference < 0) ? 'red' : 'blue',
+                            backgroundColor: (row.percentChange > 0) ? 'green' : (row.percentChange < 0) ? 'red' : 'blue',
                             color: 'white'
                           }}
                         >

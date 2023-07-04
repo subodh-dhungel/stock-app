@@ -15,7 +15,6 @@ import GoogleButton from "./GoogleButton";
 export default function Login() {
   let [email, setEmail] = useState('')
   let [password, setPassword] = useState('')
-  let [loggedIn, setLoggedIn] = useState(false)
   let router = useRouter()
 
   const googleLogin = async(e) => {
@@ -33,7 +32,6 @@ export default function Login() {
     try{
       const {result, error} = await signIn(email,password)
       router.push('/home')
-      console.log('welcome user')
     }catch(e){
       console.log(e)
     }
