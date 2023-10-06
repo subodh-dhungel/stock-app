@@ -1,6 +1,4 @@
-import { Container, Paper } from "@mui/material";
 import React from "react";
-import CustomHeading from "../CustomHeading";
 import {
   ResponsiveContainer,
   AreaChart,
@@ -17,52 +15,40 @@ const NepseChart = (props) => {
   console.log(apiData);
   const data = [
     {
-      time: "Shrawan",
-      index: 0.0826,
+      time: "11:00",
+      index: 2051,
     },
     {
-      time: "Bhadra",
-      index: 0.0864,
+      time: "11:30",
+      index: 2076,
     },
     {
-      time: "Ashwin",
-      index: 0.085,
+      time: "12:00",
+      index: 2081,
     },
     {
-      time: "Kartik",
-      index: 0.0808,
+      time: "12:30",
+      index: 2071,
     },
     {
-      time: "Mangsir",
-      index: 0.0738,
+      time: "1:00",
+      index: 2073,
     },
     {
-      time: "Poush",
-      index: 0.0726,
+      time: "1:30",
+      index: 2068,
     },
     {
-      time: "Magh",
-      index: 0.0788,
+      time: "2:00",
+      index: 2067,
     },
     {
-      time: "Falgun",
-      index: 0.0744,
+      time: "2:30",
+      index: 2070,
     },
     {
-      time: "Chaitra",
-      index: 0.065,
-    },
-    {
-      time: "Baisakh",
-      index: 0.0659,
-    },
-    {
-      time: "Jestha",
-      index: 0.062,
-    },
-    {
-      time: "Ashar",
-      index: 0.06,
+      time: "3:00",
+      index: 2077,
     },
   ];
 

@@ -15,7 +15,7 @@ import {
   Grid,
   Typography,
 } from "@mui/material";
-import addData from "@/firebase/Firestore";
+import { addData } from "@/firebase/Firestore";
 
 export default function PortfolioDialogue() {
   const [open, setOpen] = React.useState(false);

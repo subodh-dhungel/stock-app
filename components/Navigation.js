@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useRouter } from 'next/router';
+import { logout } from '@/firebase/Authentication';
 
 const pages = [
     {
@@ -65,13 +66,25 @@ function Navigation() {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = (e, settings, index) => {
+    // const handleCloseUserMenu = (e, settings, index) => {
+    //     e.preventDefault();
+    //     setAnchorElUser(null);
+    //     if (settings) {
+    //       router.push(`/${settings.toLowerCase()}`);
+    //     }
+    // };
+
+    const handleCloseUserMenu = async (e, settings, index) => {
         e.preventDefault();
         setAnchorElUser(null);
-        if (settings) {
-          router.push(`/${settings.toLowerCase()}`);
+        if (settings.name === 'Logout') {
+          await logout();
+          router.push('/login');
+        } else {
+          router.push(settings.url);
         }
     };
+    
 
     return (
         <AppBar 
@@ -99,7 +112,7 @@ function Navigation() {
                             fontStyle: 'italic'
                         }}
                     >
-                        Online Stock
+                        Nepse Pulse
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -159,7 +172,7 @@ function Navigation() {
                             fontStyle: 'italic'
                         }}
                     >
-                        Online Stock
+                        Nepse Pulse
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page, index) => (
@@ -197,7 +210,7 @@ function Navigation() {
                             onClose={(e) => handleCloseUserMenu(e)}
                         > 
                             {settings.map((settings ,index) => (
-                            <MenuItem key={index} onClick={(e) => handleCloseNavMenu(e, settings, index)}>
+                            <MenuItem key={index} onClick={(e) => handleCloseUserMenu(e, settings, index)}>
                                 <Typography textAlign="center">{settings.name}</Typography>
                             </MenuItem>
                             ))}

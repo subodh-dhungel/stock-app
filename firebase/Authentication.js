@@ -1,5 +1,5 @@
 import firebaseApp from "./Config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup ,setPersistence, browserSessionPersistence} from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, getAuth, signInWithPopup ,setPersistence, browserSessionPersistence, onAuthStateChanged, signOut} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider()
@@ -9,6 +9,7 @@ const auth = getAuth(firebaseApp)
 //email and password signup
 export const signUp = async(email,password) => {
     try{
+        await setPersistence(auth, browserSessionPersistence);
         const userCredential = await createUserWithEmailAndPassword(auth, email, password)
         const user = userCredential.user
         return {
@@ -67,16 +68,25 @@ export const signInGoogle = async () => {
     }
 }
 
-// check whether user is logged in or not...
-export const isLoggedIn = () => {
-    let user = auth.currentUser
-    let name = auth.currentUser
-    if(user){
-        return true,name.displayName
-    }else{
-        return false
+export const logout = async () => {
+    const auth = getAuth(firebaseApp);
+    try {
+        await signOut(auth);
+        console.log("User signed out");
+    } catch (e) {
+        console.error('Error signing out:', e);
     }
-}
+};
 
-// make user logged in after he visits again...
-// this is my code make the user logged in using firebase persistance
+export const isLoggedIn = () => {
+    return new Promise((resolve, reject) => {
+        const auth = getAuth();
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                resolve({ loggedIn: true, name: user.displayName });
+            } else {
+                resolve({ loggedIn: false });
+            }
+        });
+    });
+};
